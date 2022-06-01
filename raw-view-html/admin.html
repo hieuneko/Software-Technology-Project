@@ -12,8 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <!-- css tu viet -->
-    <link rel="stylesheet" href="../doan/resources/css/doctorList.css">
-    <script src="../doan/resources/js/editProfile.js"></script>
+    <link rel="stylesheet" href="../Software-Technology-Project/resources/css/doctorList.css">
+    <script src="../Software-Technology-Project/resources/js/editProfile.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/quanly.css">
 </head>
 <body>
@@ -23,15 +23,11 @@
                 <h1>User Managerment</h1>
             </div>
             <div class="topnav">
-                <a class="active" href="home.html">
-                    <img alt="Home" src="resources/images/home.jpg" width="40" height="40"> 
-                </a>
-                <a class="active" href="profile.html">
-                    <img alt="Admin" src="resources/images/images.png" width="40" height="40">    
-                </a>
-                <a class="active" href="login.html">
-                    <img alt="Logout" src="resources/images/logout.png" width="40" height="40"> 
-                </a>
+                <!-- đặt tên controller là home, router là main -->
+                <button><a class="active" href="/home/main" style="padding-left: 10px;">HOME</a></button>
+                <!-- đặt tên controller là admin, router là addNewDoctor, đổi lại theo tên nếu đã đặt -->
+                <button><a class="active" href="/admin/addNewDoctor" style="padding-left: 0px;">Thêm Bác sĩ</a></button>
+                <button><a class="active" href="/admin/DocRespon" style="padding-left: 0px;">Trao quyền</a></button>
             </div>
         </div>
         <div class="tab" style="padding-left: 0;width: 100%;background-color:white;">
@@ -66,22 +62,22 @@
                                         i++;
                                     } -->
                               <tr>
-                                <td><p id="col">1</p></td>
-                                <td><p id="col-img"><img src="../doan/resources/images/man1.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Doe</p></td>     
-                                <td><p>123@gmail.com</p></td>
-                                <td><p>1</p></td>
-                                <td><p id="col">0111123232</p></td>
+                                <td>1</td>
+                                <td>Doe</td>     
+                                <td>123@gmail.com</td>
+                                <td>1</td>
+                                <td>0111123232</td>
                               </tr>
                               <tr>
                                 <td><p id="col">2</p></td>
-                                <td><p id="col-img"><img src="../doan/resources/images/man2.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Moe</p></td>
+                                <td><p id="col-img"><img src="../Software-Technology-Project/resources/images/man2.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Moe</p></td>
                                 <td><p>123@gmail.com</p></td>
                                 <td><p>0</p></td>
                                 <td><p id="col">0363232132</p></td>
                               </tr>
                               <tr>
                                 <td><p id="col">3</p></td>
-                                <td><p id="col-img"><img src="../doan/resources/images/man3.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Dooley</p></td>
+                                <td><p id="col-img"><img src="../Software-Technology-Project/resources/images/man3.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Dooley</p></td>
                                 <td><p>123@gmail.com</p></td>
                                 <td><p>0</p></td>
                                 <td><p id="col">0923231231</p></td>
@@ -118,7 +114,7 @@
                                       } -->
                                 <tr>
                                   <td><p id="col">1</p></td>
-                                  <td><p id="col-img"><img src="../doan/resources/images/man1.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Doe</p></td>
+                                  <td><p id="col-img"><img src="../Software-Technology-Project/resources/images/man1.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Doe</p></td>
                                   <td><p>123@gmail.com</p></td>
                                   <td><p id="col">0111123232</p></td>
                                   <td><p>1</p></td>
@@ -126,7 +122,7 @@
                                 </tr>
                                 <tr>
                                   <td><p id="col">2</p></td>
-                                  <td><p id="col-img"><img src="../doan/resources/images/man2.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Moe</p></td>
+                                  <td><p id="col-img"><img src="../Software-Technology-Project/resources/images/man2.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Moe</p></td>
                                   <td><p>123@gmail.com</p></td>
                                   <td><p id="col">0363232132</p></td>
                                   <td><p>0</p></td>
@@ -134,7 +130,7 @@
                                 </tr>
                                 <tr>
                                   <td><p id="col">3</p></td>
-                                  <td><p id="col-img"><img src="../doan/resources/images/man3.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Dooley</p></td>
+                                  <td><p id="col-img"><img src="../Software-Technology-Project/resources/images/man3.png" alt="img" width="50px" height="50px" onclick="showMiniProfile()">Dooley</p></td>
                                   <td><p>123@gmail.com</p></td>
                                   <td><p id="col">0923231231</p></td>
                                   <td><p>0</p></td>
@@ -157,24 +153,23 @@
                 document.getElementById("btn-cus").style.backgroundColor='rgb(234, 234, 234)';
                 document.getElementById("btn-doc").style.backgroundColor='rgb(95, 143, 255)';
             }
-            function myFunction(myInput,myTable) {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById(myInput);
-                filter = input.value.toUpperCase();
-                table = document.getElementById(myTable);
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                  td = tr[i].getElementsByTagName("td")[0];
-                  if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                      tr[i].style.display = "";
-                    } else {
-                      tr[i].style.display = "none";
-                    }
-                  }       
-                }
-            }
+            var $rows1 = $('#cusTable tbody tr');
+            $('#myInput1').keyup(function() {
+            var val1 = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            $rows1.show().filter(function() {
+            var text1 = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text1.indexOf(val1);
+            }).hide();
+            });
+
+            var $rows2 = $('#docTable tbody tr');
+            $('#myInput2').keyup(function() {
+            var val2 = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            $rows2.show().filter(function() {
+            var text2 = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text2.indexOf(val2);
+            }).hide();
+            });
         </script>
     </form>
 </body>

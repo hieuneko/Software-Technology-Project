@@ -10,12 +10,12 @@ function iframeLoaded() {
 function changeTab(btn){
     var frame = document.getElementById('main__content__iframe');
     if(btn.id=="main__nav__edit"){
-        frame.src="../raw-view-html/editProfile.html";
+        frame.src="../doan/editProfile.html";
         frame.with="100%";
         frame.height="180%";
     }
     else if(btn.id=="main__nav__list"){
-        frame.src="../raw-view-html/doctorList.html";
+        frame.src="../doan/doctorList.html";
         frame.with="100%";
         frame.height="100%";
     }
