@@ -8,23 +8,25 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/7c97a72e23.js" crossorigin="anonymous"></script>
 <!-- css tu viet -->
-<link rel="stylesheet" href="../public/css/doctorList.css">
-<script src="../public/js/editProfile.js"></script>
-<link rel="stylesheet" type="text/css" href="../public/css/quanly.css">
+<link rel="stylesheet" href="/css/doctorList.css">
+
+<script src="/js/editProfile.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/quanly.css">
 
 
-<form name="manager" action="" method="post">
+<form name="manager" action="/controller/" method="get">
     <div class="header-nav" style="height: 150px;width: 100%;">
         <div class="name-page">
-            <h1>User Managerment</h1>
+            <h1>User Management</h1>
         </div>
         <div class="topnav">
             <!-- đặt tên controller là home, router là main -->
-            <button><a class="active" href="/home/main" style="padding-left: 10px;">HOME</a></button>
+            <button><a class="active" href="/controller/mainForm" style="padding-left: 10px;">HOME</a></button>
             <!-- đặt tên controller là admin, router là addNewDoctor, đổi lại theo tên nếu đã đặt -->
-            <button><a class="active" href="/admin/addNewDoctor" style="padding-left: 0px;">Thêm Bác sĩ</a></button>
-            <button><a class="active" href="/admin/DocRespon" style="padding-left: 0px;">Trao quyền</a></button>
+            <button><a class="active" href="/controller/addNewDoc" style="padding-left: 0px;">Thêm Bác sĩ</a></button>
+            <button><a class="active" href="/controller/DocRespon" style="padding-left: 0px;">Trao quyền</a></button>
         </div>
     </div>
     <div class="tab" style="padding-left: 0;width: 100%;background-color:white;">
@@ -38,29 +40,27 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th class="text-center">Customer name</th>
-                        <th class="text-center">Phone</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Xem chi tiết</th>
+                        <th class="text-left">Customer name</th>
+                        <th class="text-left">Phone</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-left">Xem chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- lấy dữ liệu từ controller, bỏ vào for hoặc while để in ra toàn bộ -->
-                    <%  for(let cus of cusList){ 
-                            let i=1; 
-                    %>
+                    <%  let i=1; %>
+                    <%  for(let cus of cusList){ %>
                             <tr>
                                 <td><%= i %></td>
                                 <td><%= cus.name %></td>
                                 <td><%= cus.phonenumber %> </td>
                                 <td><%= cus.email %> </td>
                                 <!-- tạo controller profile với router /customer/:id -->
-                                <td><button type="button" class="btn btn-primary" style="height: 40px;width:60px;"><a href="/profile/customer/id='<%= cus.id_user %>'">Xem</a></button></td>
+                                <td>
+                                  <a class="fa-solid fa-circle-info fa-2x" style="text-decoration:none;" href="/controller/customer/<%= cus.id_user %>">
+                                </td>
                             </tr>
-                    <%
-                            i++;
-                        }
-                    %>
+                    <% i++; } %>
                 </tbody>
             </table>
         </div>
@@ -70,34 +70,30 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th class="text-center">Doctor name</th>
-                        <th class="text-center">Phone</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Checked</th>
-                        <th class="text-center">Specialized</th>
-                        <th class="text-center">Rank</th>
-                        <th class="text-center">Xem chi tiết</th>
+                        <th class="text-left">Doctor name</th>
+                        <th class="text-left">Phone</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-left">Checked</th>
+                        <th class="text-left">Specialized</th>
+                        <th class="text-left">Rank</th>
+                        <th class="text-left">Xem chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- lấy dữ liệu id, name, phone, email, dr_high,name_tag, rank từ 3 bảng doctor, tag, rank -->
-                    <%  for(let doc of docList){ 
-                            let i=1; 
-                    %>
+                    <%  let ind=1; %>
+                    <%  for(let doc of docList){ %>
                             <tr>
-                                <td><%= i %> </td>
+                                <td><%= ind %> </td>
                                 <td><%= doc.name  %></td>
                                 <td><%= doc.phonenumber %></td>
                                 <td><%= doc.email %></td>
                                 <td><%= doc.dr_high==1 ? "Check" : "No Check"%> </td>
                                 <td><%= doc.name_tag %></td>
-                                <td><%= doc.rank %></td>
-                                <td><button type="button" class="btn btn-primary" style="height: 40px;width:60px;"><a href="/profile/doctor/id='<%= doc.id_dr %>'">Xem</a></button></td>
+                                <td><%= doc.name_rank %></td>
+                                <td><a class="fa-solid fa-circle-info fa-2x" style="text-decoration:none;" href="/controller/doctor/<%= doc.id_dr %>"></td>
                             </tr>
-                    <%
-                            i++;
-                        }
-                    %>
+                    <% ind++; } %>
                 </tbody>
             </table>
         </div>

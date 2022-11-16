@@ -9,44 +9,46 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css tu viet -->
-<link rel="stylesheet" href="../public/css/doctorList.css">
-<script src="../public/js/editProfile.js"></script>
-<link rel="stylesheet" type="text/css" href="../public/css/quanly.css">
+<link rel="stylesheet" href="/css/doctorList.css">
+<script src="/js/editProfile.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/quanly.css">
 
-<form name="authorize" action="/admin/storeDoc" method="get">
+<form name="authorize" action="/controller/storeAuthorDoc" method="post">
     <div class="header-nav" style="height: 150px;width: 100%;">
         <div class="name-page">
             <h1>List of authorize doctors</h1>
         </div>
     </div>
     <div class="tab" style="padding-left: 0;width: 100%;background-color:white;">
-        <div id="doctor-tab" class="tabcontent" style="display: none;">
+        <div id="doctor-tab" class="tabcontent" style="display: block;">
             <input type="text" id="myInput2" placeholder="Search for doctor.." title="Type in a name">
             <table id='docTable' class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th class="text-center">Doctor name</th>
-                        <th class="text-center">Phone</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Specialized</th>
-                        <th class="text-center">Rank</th>
-                        <th class="text-center">Xem chi tiết</th>
+                        <th class="text-left">Doctor name</th>
+                        <th class="text-left">Phone</th>
+                        <th class="text-left">Email</th>
+                        <th class="text-left">Specialized</th>
+                        <th class="text-left">Rank</th>
+                        <th class="text-left">Auth</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- lấy dữ liệu id, name, phone, email, dr_high,name_tag, rank từ 3 bảng doctor, tag, rank -->
-                    <%  for(let doc of docList){ 
-                            let i=1; 
-                    %>
+                    <%  let i=1; %>
+                    <%  for(let doc of docList){ %>
                             <tr>
                                 <td><%= i %> </td>
                                 <td><%= doc.name  %></td>
                                 <td><%= doc.phonenumber %></td>
                                 <td><%= doc.email %></td>
-                                <td><%= doc.name_tag %></td>
-                                <td><%= doc.rank %> </td>
-                                <td><input type="submit" class="btn btn-primary" id="btn-authorize" style="height: 40px;width:60px;" value="Authorize"><input type="submit" class="btn btn-primary" id="btn-delete" style="height: 40px;width:60px;margin-left:10px;" value="Delete"></td>
+                                <td><%= doc.id_tag %></td>
+                                <td><%= doc.id_rank %> </td>
+                                <td>
+
+                                  <button type="submit" class="btn btn-primary" id="btn-authorize" style="height: 40px;width:60px;" name="authorize" value="<%= doc.id_dr  %>">Authorized</button>
+                                  </td>
                             </tr>
                     <%
                             i++;
